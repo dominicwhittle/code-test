@@ -1,0 +1,52 @@
+---
+interface Props {
+  img: string
+  title: string
+  description?: string
+  duration: number // duration in minutes
+  sessions: string[]
+}
+
+// Extract data from props
+const { title, description, sessions, duration, img } = Astro.props
+
+// Designer's notes:
+// - Images will all be the same aspect ratio, eg 908x538
+
+// Example of how you can do whatever you need to with the data
+const sessionDates = sessions.map((x) => new Date(x))
+---
+
+<div class="event">
+  <h2>{title}</h2>
+  <p>{description}</p>
+  <img src={img} alt="???" />
+  <!-- Session times and duration not designed yet -->
+</div>
+
+<style>
+  .event {
+    outline: 1px solid rgba(255, 0, 0, 0.1);
+    /* ... */
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    /* One column */
+  }
+</style>
+
+<script>
+  // Astro will only inject this script tag ONCE
+
+  // Find our component DOM on the page
+  const events = document.querySelectorAll(".event")
+
+  // Do something with each component instance
+  events.forEach((event) => {
+    console.log(event)
+  })
+</script>

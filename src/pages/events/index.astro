@@ -1,0 +1,51 @@
+---
+import Event from "../../components/Event.astro"
+import Layout from "../../layouts/Layout.astro"
+
+// Mock events database response
+const events = [
+  {
+    img: "/public/people.jpg",
+    title: "Education Roundtable: K-12 & Higher Ed",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, diam vitae vulputate tristique, dolor diam euismod purus, et porta magna dui nec nisl. Etiam rutrum sollicitudin libero eu tempor.",
+    duration: 90,
+    sessions: [
+      "2025-10-21T09:00:00+01:00", // London
+      "2025-10-21T15:00:00+11:00", // AEST
+      "2025-10-20T09:00:00-07:00", // LA
+    ],
+  },
+  {
+    img: "location.jpg",
+    title: "Educause Annual | Webinar 2025",
+    description:
+      "Vivamus vulputate turpis imperdiet ligula vestibulum, nec ultricies neque faucibus. ",
+    duration: 60,
+    sessions: [
+      "2025-10-21T12:00:00+01:00", // London
+      "2025-10-21T15:30:00+11:00", // AEST
+      "2025-10-20T11:00:00-07:00", // LA
+    ],
+  },
+]
+---
+
+<Layout>
+  <div class="astro-time">{new Date()}</div>
+  <div class="events">
+    {events.map((data) => <Event {...data} />)}
+  </div>
+</Layout>
+
+<style>
+  .astro-time {
+    padding: 2rem;
+  }
+  .events {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 2rem;
+  }
+</style>
